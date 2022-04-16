@@ -1,1 +1,1 @@
-web: gunicorn sismos:app
+web: gunicorn app:app
