@@ -1,1 +1,1 @@
-web: gunicorn sismos:sismos
+web: python sismos.py
