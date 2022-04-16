@@ -69,9 +69,9 @@ def sismo_scraping():
 
 
 
-def report():
-    sismo= f'{sismo_scraping()}'
-    bot_send_text(sismo)
+#def report():
+    #sismo= f'{sismo_scraping()}'
+    #bot_send_text(sismo)
 
 
 if __name__ == '__main__':
