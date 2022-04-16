@@ -5,12 +5,11 @@ name: Python application
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-permissions:
-  contents: read
+    branches:
+    - main
+    
+  schedule:
+  - cron: "*/5 * * * *"
 
 jobs:
   build:
@@ -18,22 +17,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
     - name: Set up Python 3.10
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v2
       with:
         python-version: "3.10"
-    - name: Install dependencies
+
+    - uses: actions/cache@v2
+      with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
+          
+    # Instalando dependencias
+    - name: Instalando dependencias de Python
       run: |
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        pip install -r requirements.txt
     - name: Test with pytest
       run: |
-        pytest
+        python sismos.py
+                
+    - name: Commit and push if it changed
+      run: |
+        git config user.name "brunooviedo"
+        git config user.email "bruno.oviedo89@gmail.com"
+        git add .
+        timestamp=$(date -u)
+        git commit -F message.txt || exit 0
+        git push
