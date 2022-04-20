@@ -77,7 +77,7 @@ def report():
 if __name__ == '__main__':
         
     # schedule.every().day.at("12:34").do(report)
-    schedule.every(1).hours.do(report)
+    # schedule.every(1).hours.do(report)
 
     while True:
         schedule.run_pending()
