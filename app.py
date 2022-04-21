@@ -66,29 +66,34 @@ def sismo_scraping():
         string += column + " : " + str(dataset_filter[column].values[0]) + "\n"
     
     fecha_actual = dataset_filter.head(1)["Fecha Local"].values[0]
-    fecha_actual2 = dataset_filter.head(1)["Fecha Local"].values[0]
+    fecha_actual2 = dataset_filter.head(2)["Fecha Local"].values[1]
     
     if fecha_actual != fecha_actual2:
-        print(string)
+        return string
     else:
         pass
-
+   
+   
+fecha_actual2 = 0
 
 
 def report():
-
+   
+    global fecha_actual2
     btc_price = f'{sismo_scraping()}'
-    if btc_price == 0:
+    
+    if btc_price != fecha_actual2:
+        btc_price = f'{sismo_scraping()}'
         bot_send_text(btc_price)
-    else:
-        pass
 
 
 if __name__ == '__main__':
         
     # schedule.every().day.at("12:34").do(report)
-    schedule.every(5).minutes.do(report)
+    #schedule.every(0.1).minutes.do(report)
+    # schedule.every(3.0).minutes.do(report)
+    report()
 
     while True:
         schedule.run_pending()
-    
+        time.sleep(0.5)
