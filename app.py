@@ -93,7 +93,7 @@ def main():
         if (text) != ultimo_sismo:
             bot_send_text(text)
             ultimo_sismo = (text)
-        time.sleep(20) 
+        time.sleep(60) 
 
 
 if __name__ == '__main__':
@@ -104,6 +104,6 @@ if __name__ == '__main__':
     #report()
     main()
 
-    while True:
-        schedule.run_pending()
-        time.sleep(0.5)
+    #while True:
+        #schedule.run_pending()
+        #time.sleep(0.5)
