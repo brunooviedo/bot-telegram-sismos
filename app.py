@@ -93,7 +93,7 @@ def main():
         if (text) != ultimo_sismo:
             bot_send_text(text)
             ultimo_sismo = (text)
-        time.sleep(0.5) 
+        time.sleep(20) 
 
 
 if __name__ == '__main__':
