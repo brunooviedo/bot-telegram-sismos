@@ -86,14 +86,14 @@ def sismo_scraping():
         #btc_price = f'{sismo_scraping()}'
        # bot_send_text(btc_price)
         
- def main():
+def main():
     ultimo_sismo = (None)
     while True:
         text = f'{sismo_scraping()}'
         if (text) != ultimo_sismo:
             bot_send_text(text)
             ultimo_sismo = (text)
-        time.sleep(0.5)
+        time.sleep(0.5) 
 
 
 if __name__ == '__main__':
