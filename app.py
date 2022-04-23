@@ -61,33 +61,12 @@ def sismo_scraping():
             & (dataset["Longitud"] <= -68.426)
             ]
     
-    string="A ocurrido un sismo en las cercanías de iquique" "\n" "Datos del sismo:" "\n" "\n" #titulo con salto de linea
+    string="A ocurrido un sismo en las cercanías de iquique" "\n""\n" "Datos del sismo:" "\n" "\n" #titulo con salto de linea
     
-    titulos = dataset_filter.head(1).columns
     
-    for column in titulos:
-        string += '\033[1m'+ column + '\033[0m' " : " + str(dataset_filter[column].values[0]) + "\n"
+    for column in dataset_filter.head(1).columns:
+        string += column +  " : " + str(dataset_filter[column].values[0]) + "\n"
     return string
-    #fecha_actual = dataset_filter.head(1)["Fecha Local"].values[0]
-    #fecha_actual2 = dataset_filter.head(2)["Fecha Local"].values[1]
-    
-   # if fecha_actual != fecha_actual2:
-        #return string
-    #else:
-       # pass
-   
-   
-#fecha_actual2 = 0
-
-
-#def report():
-   
-   # global fecha_actual2
-    #btc_price = f'{sismo_scraping()}'
-    
-   # if btc_price != fecha_actual2:
-        #btc_price = f'{sismo_scraping()}'
-       # bot_send_text(btc_price)
         
 def main():
     ultimo_sismo = (None)
@@ -100,13 +79,6 @@ def main():
 
 
 if __name__ == '__main__':
-        
-    # schedule.every().day.at("12:34").do(report)
-    #schedule.every(0.1).minutes.do(report)
-    # schedule.every(3.0).minutes.do(report)
-    #report()
+
     main()
 
-    #while True:
-        #schedule.run_pending()
-        #time.sleep(0.5)
