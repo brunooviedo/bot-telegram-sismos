@@ -61,7 +61,7 @@ def sismo_scraping():
             & (dataset["Longitud"] <= -68.426)
             ]
     
-    string="A ocurrido un sismo en las cercanías de iquique" "\n" "Datos del sismo:" "\n" "\n"
+    string="A ocurrido un sismo en las cercanías de iquique" "\n" "Datos del sismo:" "\n" "\n" #titulo con salto de linea
     
     titulos = dataset_filter.head(1).columns
     
