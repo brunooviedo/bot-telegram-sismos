@@ -61,9 +61,12 @@ def sismo_scraping():
             & (dataset["Longitud"] <= -68.426)
             ]
     
-    string="A ocurrido un sismo en las cercanías de iquique" "\n"
-    for column in dataset_filter.head(1).columns:
-        string += column + " : " + str(dataset_filter[column].values[0]) + "\n"
+    string="A ocurrido un sismo en las cercanías de iquique" "\n" "Datos del sismo:" "\n" "\n"
+    
+    titulos = dataset_filter.head(1).columns
+    
+    for column in titulos:
+        string += '\033[1m'+ column + '\033[0m' " : " + str(dataset_filter[column].values[0]) + "\n"
     return string
     #fecha_actual = dataset_filter.head(1)["Fecha Local"].values[0]
     #fecha_actual2 = dataset_filter.head(2)["Fecha Local"].values[1]
